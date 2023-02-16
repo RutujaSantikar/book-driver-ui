@@ -1,0 +1,167 @@
+<section class="main-container">
+ <div class="book-driver-heading rounded-lg  p-3 text-black font-bold font-lg bg-white  shadow-lg shadow-white-500/50  ">Book Driver</div>
+  <form action="" [formGroup]="bookDriverForm">
+ <div class="tripDetails flex flex-wrap flex-col my-5 sm:flex-row">
+
+  <div class="card1 sm:w-1/2  sm:pr-2" >
+    <div class="trip-type my-2  rounded-lg bg-white shadow-lg shadow-white-500/50 p-4  sm:w-full ">
+      <div class="trip-type-heading font-bold text-gray-500">Trip Type</div>
+      <div class="trip-type-content " >
+        <mat-radio-group aria-label="Select an option"  formControlName="Triptype">
+          <mat-radio-button *ngFor=" let trip of TripType"
+           [value]="trip.trpType" class="font-bold">{{trip.trpType}}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+  </div>
+
+  <div class="card1 sm:w-1/2 sm:pl-2">
+    <div class="trip-frequency my-2 rounded-lg bg-white shadow-lg shadow-white-500/50 p-4  sm:w-full">
+      <div class="trip-frequency-heading  font-bold text-gray-500">Frequency</div>
+      <div class="trip-frequency-content">
+        <mat-radio-group aria-label="Select an option"  formControlName="Tripfrequency">
+          <mat-radio-button *ngFor="let frequency of TripFrequency"  [value]="frequency.trpFrequency">{{frequency.trpFrequency}}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+  </div>
+
+ <div class="card1 sm:w-1/2  sm:pr-2">
+  <div class="trip-duration my-2 rounded-lg bg-white shadow-lg shadow-white-500/50 p-4  sm:w-full">
+    <div class="trip-duration-heading font-bold text-gray-500">Trip Duration</div>
+      <div class="trip-duration-content">
+        <mat-radio-group aria-label="Select an option"   formControlName="Tripduration">
+          <mat-radio-button *ngFor="let time of TripDuration" [value]="time.trpDuration">{{time.trpDuration}}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+  </div>
+
+
+
+
+ </div>
+
+ <div class="table-container  rounded-lg bg-white shadow-lg shadow-white-500/50 p-4 ">
+  <div class="rate-heading font-bold text-gray-500">Potential Rate</div>
+ <table class="table-auto w-full text-center">
+    <thead>
+      <tr>
+        <th class="px-2 py-1 text-gray-500 ">Trip</th>
+        <th class="px-4 py-2 text-gray-500">Duration(in hrs)</th>
+        <th class="px-4 py-2 text-gray-500">Frequency</th>
+        <th class="px-4 py-2 text-gray-500">Charges</th>
+        <th class="px-4 py-2 text-gray-500" >OverTime</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let rate of potentialRate">
+        <td class="border px-4 py-2 ">{{rate.trip}}</td>
+        <td class="border px-4 py-2">{{rate.duration}}</td>
+        <td class="border px-4 py-2">{{rate.frequency}}</td>
+        <td class="border px-4 py-2">{{rate.charges}}</td>
+        <td class="border px-4 py-2">{{rate.overtime}}</td>
+
+      </tr>
+
+      </tbody>
+
+      </table>
+
+ </div>
+
+
+ <div class="trip-details-container w-full my-5 flex flex-col mb-2 sm:flex sm:flex-row sm:flex-wrap " >
+
+
+  <div class="trp-card1 mb-5  w-full sm:w-1/2  sm:pr-2 " >
+  <div class="trip-type flex justify-between rounded-lg bg-white shadow-lg shadow-white-500/50 p-4 w-full sm:flex flex-wrap  sm:1/2 ">
+       <div class="from-details  p-2 sm:p-0 w-full sm:w-96 ">
+       <div class="trip-type-heading font-bold text-gray-500" >FROM</div>
+       <div class="trip-type-content w-full   sm:w-96">
+       <select name="" id="" class=" w-full border-2 p-2 rounded-lg  sm:w-96 "  formControlName="From">
+          <option *ngFor="let places of fromDestination">{{places.name}}</option>
+        </select>
+     </div>
+    </div>
+
+     <div class="to-details p-2 sm:p-0  w-full sm:w-1/2">
+      <div class="trip-type-heading font-bold text-gray-500 ">ON</div>
+      <div class="trip-type-content  ">
+        <input type="text" class="border-2 p-2 gap-2 rounded-lg w-1/2" formControlName="fromDate"><input type="text" class="border-2 p-2 rounded-lg w-1/2" formControlName="fromTime">
+
+      </div>
+     </div>
+
+  </div>
+</div>
+
+
+<div class="trp-card1 mb-5  w-full sm:w-1/2  sm:pr-2 " >
+<div class="trip-type flex justify-between rounded-lg bg-white shadow-lg shadow-white-500/50 p-4 w-full sm:flex flex-wrap  sm:1/2  ">
+    <div class="from-details  p-2 sm:p-0 w-full sm:w-96 ">
+    <div class="trip-type-heading font-bold text-gray-500" >TO</div>
+    <div class="trip-type-content w-full   sm:w-96">
+     <select name="" id="" class=" w-full border-2 p-2 rounded-lg  sm:w-96 " formControlName="To">
+       <option *ngFor="let places of toDestination" >{{places.name}}</option>
+
+     </select>
+  </div>
+ </div>
+
+ <div class="to-details p-2 sm:p-0  w-full sm:w-1/2">
+  <div class="trip-type-heading font-bold text-gray-500 ">ON</div>
+  <div class="trip-type-content ">
+    <input type="text" class="border-2 p-2 rounded-lg w-1/2" formControlName="toDate" ><input type="text" class="border-2 p-2 rounded-lg w-1/2 " formControlName="toTime"/>
+
+  </div>
+ </div>
+
+</div>
+</div>
+
+<div class="trp-card3 sm:w-1/2 sm:pr-2" >
+<div class=" my-5  rounded-lg bg-white shadow-lg shadow-white-500/50 p-5 sm:p-4 w-full ">
+
+    <div class=" font-bold text-gray-500" >Vehicle Type</div>
+    <div class="">
+      <mat-radio-group aria-label="Select an option"   formControlName="Vehicletype">
+        <mat-radio-button *ngFor="let car of VehicleType" [value]="car.vehicleType"> {{car.vehicleType}}</mat-radio-button>
+
+      </mat-radio-group>
+    </div>
+  </div>
+
+
+</div>
+<div class="trp-card4 sm:w-1/2 sm:pl-2">
+
+  <div class=" my-5 rounded-lg bg-white shadow-lg shadow-white-500/50 p-5 sm:p-4 w-full ">
+    <div class=" font-bold text-gray-500">Fuel Type</div>
+    <div class="">
+      <mat-radio-group aria-label="Select an option"  formControlName="Fueltype">
+        <mat-radio-button *ngFor="let type of FuelType" [value]="type.fuelType" >{{type.fuelType}}</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+
+</div>
+<div class="trp-card5 sm:w-1/2 sm:pr-2 ">
+  <div class=" my-2 rounded-lg bg-white shadow-lg shadow-white-500/50 p-5 sm:p-4 w-full">
+    <div class="font-bold text-gray-500">Transmisson Type</div>
+    <div class="">
+      <mat-radio-group aria-label="Select an option"  formControlName="Transmissontype">
+        <mat-radio-button *ngFor="let transtype of TransType" [value]="transtype.transType">{{transtype.transType}}</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+</div>
+</div>
+
+</form>
+<div  class="flex justify-center">
+  <button mat-raised-button color="primary" class="align-center" (click)="bookDriver()">Save</button>
+ </div>
+
+
+</section>
