@@ -2,15 +2,14 @@ import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { DashboardService } from './dashboard.service';
-
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { DiaglogExampleComponent } from '../diaglog-example/diaglog-example.component';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
-
-
   // public static Triptype= "";
   // public static Tripfrequency= "";
   // public static  Tripduration= "";
@@ -24,7 +23,6 @@ export class DashboardComponent {
   // public static Fueltype= "";
   // public static Transmissontype= "";
 
-  displayedColumns: string[] = ['trip', 'duration', 'frequency', 'charges' , 'overtime'];
 
 //   trpDetails= [
 //    {
@@ -64,6 +62,11 @@ export class DashboardComponent {
 
 //    },
 // ]
+
+ minDate = new Date();
+ disabled = false;
+
+displayedColumns: string[] = ['trip', 'duration', 'frequency', 'charges' , 'overtime'];
 
   TripType =[
     {"id":1, "trpType":"Local"},
@@ -144,7 +147,7 @@ export class DashboardComponent {
 
   ]
 
-  constructor(private dashboardService : DashboardService ){}
+  constructor(private dashboardService : DashboardService, private dialog : MatDialog ){}
 
   bookDriverForm = new FormGroup({
 
@@ -197,6 +200,14 @@ export class DashboardComponent {
   // }
 
 
+     onEdit(rate:any){
+    const diaglogRef = this.dialog.open(DiaglogExampleComponent ,{
+
+       width:'400px',
+        data:rate
+    })
+    console.log(rate)
+     }
 
 
    bookDriver(){
@@ -216,7 +227,9 @@ export class DashboardComponent {
 
 
 
-    this.dashboardService.bookDriver(TripType,TripFrequency,TripDuration,From,FromDate,FromTime,To,ToDate,ToTime,VehicleType,FuelType,TransmissionType).subscribe((response:any)=>{
+    this.dashboardService.bookDriver(TripType,TripFrequency,TripDuration,
+      From,FromDate,FromTime,To,ToDate,ToTime,
+      VehicleType,FuelType,TransmissionType).subscribe((response:any)=>{
       console.log(response);
     })
     // console.log(this.bookDriverForm.value);

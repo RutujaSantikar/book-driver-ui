@@ -61,6 +61,7 @@
         <td class="border px-4 py-2">{{rate.frequency}}</td>
         <td class="border px-4 py-2">{{rate.charges}}</td>
         <td class="border px-4 py-2">{{rate.overtime}}</td>
+        <td class="border px-4 py-2"><button mat-raised-button color="primary" (click)="onEdit(rate)">Edit</button></td>
 
       </tr>
 
@@ -71,24 +72,32 @@
  </div>
 
 
- <div class="trip-details-container w-full my-5 flex flex-col mb-2 sm:flex sm:flex-row sm:flex-wrap " >
+ <div class="trip-details-container w-full my-5 flex flex-col mb-2 sm:flex sm:flex-row sm:flex-wrap  " >
 
 
-  <div class="trp-card1 mb-5  w-full sm:w-1/2  sm:pr-2 " >
-  <div class="trip-type flex justify-between rounded-lg bg-white shadow-lg shadow-white-500/50 p-4 w-full sm:flex flex-wrap  sm:1/2 ">
+  <div class="trp-card1 mb-5  w-full sm:w-1/2  sm:pr-2  " >
+  <div class="trip-type flex justify-between rounded-lg bg-white shadow-lg shadow-white-500/50 p-4 w-full sm:flex flex-wrap  sm:1/2  ">
        <div class="from-details  p-2 sm:p-0 w-full sm:w-96 ">
        <div class="trip-type-heading font-bold text-gray-500" >FROM</div>
-       <div class="trip-type-content w-full   sm:w-96">
-       <select name="" id="" class=" w-full border-2 p-2 rounded-lg  sm:w-96 "  formControlName="From">
+       <div class="trip-type-content w-full   sm:w-96 ">
+       <select name="" id="" class=" w-full border-2 p-2 rounded-lg  sm:w-96 "  formControlName="From" >
           <option *ngFor="let places of fromDestination">{{places.name}}</option>
         </select>
      </div>
     </div>
 
-     <div class="to-details p-2 sm:p-0  w-full sm:w-1/2">
+     <div class="to-details p-2 sm:p-0  w-full sm:w-1/2 ">
       <div class="trip-type-heading font-bold text-gray-500 ">ON</div>
-      <div class="trip-type-content  ">
-        <input type="text" class="border-2 p-2 gap-2 rounded-lg w-1/2" formControlName="fromDate"><input type="text" class="border-2 p-2 rounded-lg w-1/2" formControlName="fromTime">
+      <div class="trip-type-content flex gap-3 ">
+        <!-- <input type="text" class="border-2 p-2  rounded-lg w-1/2" formControlName="fromDate"> -->
+          <mat-form-field appearance="fill" >
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker"  [min]="minDate" class="border-2  rounded-lg w-1/2" formControlName="fromDate" readonly>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <input type="text" class="border-2 p-2 rounded-lg w-1/2 " formControlName="fromTime">
+
 
       </div>
      </div>
@@ -97,7 +106,7 @@
 </div>
 
 
-<div class="trp-card1 mb-5  w-full sm:w-1/2  sm:pr-2 " >
+<div class="trp-card2 mb-5  w-full sm:w-1/2  sm:pl-2" >
 <div class="trip-type flex justify-between rounded-lg bg-white shadow-lg shadow-white-500/50 p-4 w-full sm:flex flex-wrap  sm:1/2  ">
     <div class="from-details  p-2 sm:p-0 w-full sm:w-96 ">
     <div class="trip-type-heading font-bold text-gray-500" >TO</div>
@@ -111,8 +120,16 @@
 
  <div class="to-details p-2 sm:p-0  w-full sm:w-1/2">
   <div class="trip-type-heading font-bold text-gray-500 ">ON</div>
-  <div class="trip-type-content ">
-    <input type="text" class="border-2 p-2 rounded-lg w-1/2" formControlName="toDate" ><input type="text" class="border-2 p-2 rounded-lg w-1/2 " formControlName="toTime"/>
+  <div class="trip-type-content flex gap-3">
+    <!-- <input type="text" class="border-2 p-2 rounded-lg w-1/2" formControlName="toDate" > -->
+    <mat-form-field appearance="fill" >
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker1" [min]="minDate" formControlName="toDate" readonly>
+      <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1  ></mat-datepicker>
+    </mat-form-field>
+
+    <input type="text" class="border-2 p-2 rounded-lg w-1/2 " formControlName="toTime"/>
 
   </div>
  </div>
@@ -121,7 +138,7 @@
 </div>
 
 <div class="trp-card3 sm:w-1/2 sm:pr-2" >
-<div class=" my-5  rounded-lg bg-white shadow-lg shadow-white-500/50 p-5 sm:p-4 w-full ">
+<div class=" my-2 rounded-lg bg-white shadow-lg shadow-white-500/50 p-5 sm:p-4 w-full ">
 
     <div class=" font-bold text-gray-500" >Vehicle Type</div>
     <div class="">
@@ -136,7 +153,7 @@
 </div>
 <div class="trp-card4 sm:w-1/2 sm:pl-2">
 
-  <div class=" my-5 rounded-lg bg-white shadow-lg shadow-white-500/50 p-5 sm:p-4 w-full ">
+  <div class=" my-2 rounded-lg bg-white shadow-lg shadow-white-500/50 p-5 sm:p-4 w-full ">
     <div class=" font-bold text-gray-500">Fuel Type</div>
     <div class="">
       <mat-radio-group aria-label="Select an option"  formControlName="Fueltype">
