@@ -10,58 +10,7 @@ import { DiaglogExampleComponent } from '../diaglog-example/diaglog-example.comp
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
-  // public static Triptype= "";
-  // public static Tripfrequency= "";
-  // public static  Tripduration= "";
-  // public static  From= "";
-  // public static fromDate= "";
-  // public static fromTime= "";
-  // public static  To= "";
-  // public static toDate= "";
-  // public static toTime= "";
-  // public static Vehicletype= "";
-  // public static Fueltype= "";
-  // public static Transmissontype= "";
 
-
-//   trpDetails= [
-//    {
-//     "trpType":{
-//         "local":"Local",
-//         "outstation":"Outstation",
-//     },
-//      "trpFrequency":{
-//       "daily":"Daily",
-//       "monthly":"Monthly"
-//      },
-//      "trpDuration":{
-//         "4hr":"4Hrs",
-//         "10hr":"10Hrs",
-//         "12hr":"18Hrs",
-//         "18hr":"18Hrs"
-//       },
-//       "vehicleType":{
-
-//         "hatchback":"HatchBack",
-//         "sedan":"sedan",
-//         "suv":"Suv",
-//         "compactsuv":"Compact Suv"
-
-
-//       },
-//       "fuelType":{
-//           "petrol":"Petrol",
-//           "diesel":"Diesel",
-//           "electric":"Electric"
-
-//       },
-//       "transType":{
-//           "manual":"Manual",
-//           "automatic":"Automatic"
-//       }
-
-//    },
-// ]
 
  minDate = new Date();
  disabled = false;
@@ -165,42 +114,7 @@ displayedColumns: string[] = ['trip', 'duration', 'frequency', 'charges' , 'over
    Transmissontype: new FormControl(''),
 
 })
-
-
-  //  get Triptype (){
-  //   return this.bookDriverForm.get('Triptype');
-  // }
-
-  // get frequency (){
-  //   return this.bookDriverForm.get('Tripduration');
-  // }
-
-  // get from(){
-  //   return this.bookDriverForm.get('From');
-  // }
-
-  // get to(){
-  //   return this.bookDriverForm.get('toDate');
-  // }
-
-  // get time(){
-  //    return this.bookDriverForm.get('toTime');
-  // }
-
-  // get vehicle(){
-  //   return this.bookDriverForm.get('Vehicletype');
-  // }
-
-  // get fuel(){
-  //   return this.bookDriverForm.get('Fueltype');
-  // }
-
-  // get transmission(){
-  //   return this.bookDriverForm.get('Transmissiontype')
-  // }
-
-
-     onEdit(rate:any){
+    onEdit(rate:any){
     const diaglogRef = this.dialog.open(DiaglogExampleComponent ,{
 
        width:'400px',
@@ -212,8 +126,8 @@ displayedColumns: string[] = ['trip', 'duration', 'frequency', 'charges' , 'over
 
    bookDriver(){
 
-         const TripType = this.bookDriverForm.get('Triptype')?.value;
-         const TripFrequency = this.bookDriverForm.get('Tripfrequency')?.value;
+          const TripType = this.bookDriverForm.get('Triptype')?.value;
+          const TripFrequency = this.bookDriverForm.get('Tripfrequency')?.value;
           const TripDuration = this.bookDriverForm.get('Tripduration')?.value;
           const From = this.bookDriverForm.get('From')?.value;
           const FromDate = this.bookDriverForm.get('fromDate')?.value;
@@ -227,10 +141,10 @@ displayedColumns: string[] = ['trip', 'duration', 'frequency', 'charges' , 'over
 
 
 
-    this.dashboardService.bookDriver(TripType,TripFrequency,TripDuration,
-      From,FromDate,FromTime,To,ToDate,ToTime,
-      VehicleType,FuelType,TransmissionType).subscribe((response:any)=>{
-      console.log(response);
+          this.dashboardService.bookDriver(TripType,TripFrequency,TripDuration,
+          From,FromDate,FromTime,To,ToDate,ToTime,
+          VehicleType,FuelType,TransmissionType).subscribe((response:any)=>{
+          console.log(response);
     })
     // console.log(this.bookDriverForm.value);
     this.bookDriverForm.reset();
